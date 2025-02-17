@@ -1,17 +1,34 @@
 <!DOCTYPE html>
 <html>
-<head>
-    <meta charset='utf-8'>
-    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <title>Games</title>
-    <meta name='viewport' content='width=device-width, initial-scale=1'>
-    <link rel='stylesheet' type='text/css' media='screen' href='main.css'>
-    <script src='main.js'></script>
-</head>
-<body>
-    <h1>Bem-vindo a pagina de games</h1>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+  </head>
+  <body >
+    <h1 >Bem-vindo a pagina de games</h1>
+    <hr />
+    <a href="{{url_for('home')}}">Home</a>
+    {# Comentário em jinja2 #}
+    {% for key, value in game.items()%}
+    <p>{{key}}: {{value}}</p>
+    {% endfor %}
+    <hr />
+    <p>O jogo {{game.title}} esta sendo jogado por:</p>
+    <ol>
+      {% for player in players %}
+      <li>{{player}}</li>
+      {% endfor %}
+    </ol>
     <hr>
-    <a href="{{url_for(home)}}">Home</a>
-
-</body>
+    <h4>Entrar no jogo: </h4>
+    <form action="{{url_for('games')}}" method="post">
+        <label>Jogador:</label>
+        <input type="text" name="player" />
+        <br>
+        <input type="submit" value="Entrar" />
+    </form>
+    <p>O jogo {{game.title}} tem {{2025 - game.year}} anos</p>
+  </body>
 </html>
