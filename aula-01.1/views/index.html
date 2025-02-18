@@ -5,10 +5,11 @@
     <meta http-equiv='X-UA-Compatible' content='IE=edge'>
     <title>Flask</title>
     <meta name='viewport' content='width=device-width, initial-scale=1'>
-    <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
+    <link rel="stylesheet" href="{{url_for('static', filename='css/style.css')}}" />
+
 </head>
 <body>
-    <h1 style="color: red; background-color: black;">Bem-vindo! Iniciando estudos com Flask!</h1>
+    <h1 class="title">Bem-vindo! Iniciando estudos com Flask!</h1>
     <p>Testando o Render Template do Flask</p>
     <a href="{{url_for('games')}}">Games</a>
 </body>
