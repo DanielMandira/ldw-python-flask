@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% block content %}
+    <main class="main" >
+      <h1 class="title">Bem-vindo a pagina de games</h1>
+      <a href="{{url_for('home')}}">Home</a>
+      {# Comentário em jinja2 #}
+      <section style="display: flex; flex-direction: column; align-items: center;">
+        <h2>Lista de Jogos</h2>
+        {# Iterando sobre uma lista de dicionários #}
+        <div style="display: flex; flex-direction: row; justify-content: space-around; ">
+
+            {% for game in gameList %}
+            <div style="display: flex; flex-direction: column; align-items: start; margin: 5px; border: solid 2px #ccc; padding: 10px;">
+                <p style="color: rgb(15, 57, 135); font-size: 18px;">Título: <span style="text-decoration: solid; font-weight: bold;">{{game.title}}</span></p>
+                <p style="color: rgb(15, 57, 135); font-size: 18px;">Ano: <span style="text-decoration: solid; font-weight: bold;">{{game.year}}</span></p>
+                <p style="color: rgb(15, 57, 135); font-size: 18px;">Categoria: <span style="text-decoration: solid; font-weight: bold;">{{game.category}}</span></p>
+            </div>
+            {% endfor %}
+        </div>
+      </section>
+      <hr />
+      <p>O jogo {{gameList[0].title}} esta sendo jogado por:</p>
+      <ol>
+        {% for player in players %}
+        <li>{{player}}</li>
+        {% endfor %}
+      </ol>
+      <hr />
+      <h4>Entrar no jogo:</h4>
+      <form action="{{url_for('games')}}" method="post">
+        <label>Jogador:</label>
+        <input type="text" name="player" />
+        <input type="submit" value="Entrar" />
+      </form>
+      <p>O jogo {{gameList[0].title}} tem {{2025 - gameList[0].year}} anos</p>
+
+        <a href="{{url_for('cadgames')}}">Adicionar um jogo</a>
+    </main>
+{% endblock %}

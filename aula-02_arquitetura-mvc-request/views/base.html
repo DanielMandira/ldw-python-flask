@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>The Games</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="{{url_for('static', filename='css/style.css')}}"
+    />
+  </head>
+  <body>
+    <header>
+      <h1 class="title">The Games</h1>
+      <hr />
+    </header>
+    {% block content %}
+    <!-- Aqui ira o conteudo das paginas -->
+    {% endblock content %}
+    <footer class="footer">
+      <hr />
+      <p>Desenvolvido por: Daniel Mandira</p>
+      <p>Todos os direitos reservados &reg;</p>
+    </footer>
+  </body>
+</html>
