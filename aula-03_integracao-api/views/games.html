@@ -1,13 +1,5 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <title>Games</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="stylesheet" href="{{url_for('static', filename='css/style.css')}}" />
-  </head>
-  <body>
+{% extends "base.html" %}
+{% block content %}
     <main class="main" >
       <h1 class="title">Bem-vindo a pagina de games</h1>
       <a href="{{url_for('home')}}">Home</a>
@@ -44,6 +36,4 @@
 
         <a href="{{url_for('cadgames')}}">Adicionar um jogo</a>
     </main>
-  </body>
- 
-</html>
+{% endblock %}

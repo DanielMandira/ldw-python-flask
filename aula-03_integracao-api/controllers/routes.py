@@ -1,4 +1,8 @@
 from flask import render_template, request, redirect, url_for
+#Essa biblioteca é responsável por ler uma determinada URL e retornar o conteúdo da página
+import urllib
+# Connverte dados em json
+import json
 # Criando a primeira rota da aplicação #
 players = []
 gameList = [{"title": 'CS-GO', "year": 2012, "category": 'FPS'}]
@@ -26,3 +30,25 @@ def init_app(app):
             gameList.append(form_data)
             return redirect(url_for('cadgames'))
         return render_template('cadgames.html', gameList=gameList)
+    
+    
+    @app.route('/apigames', methods=['GET', 'POST'])
+    # Passando parametros para a rota
+    @app.route('/apigames/<int:id>', methods=['GET', 'POST'])
+    # Definindo que o parametro é opcional
+    def apigames(id=None):
+        url = 'https://www.freetogame.com/api/games'
+        response = urllib.request.urlopen(url)
+        data = response.read()
+        gamesjson = json.loads(data)
+        if id:
+            ginfo = []
+            for g in gamesjson:
+                if g['id'] == id:
+                    ginfo=g
+                    break
+            if ginfo:
+                return render_template('gameinfo.html', ginfo=ginfo)
+            else:
+                return 'Game not found'
+        return render_template('apigames.html', gamesjson=gamesjson)
