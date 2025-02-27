@@ -1,0 +1,53 @@
+.capa{
+    width: 16em;
+    height: 20em;
+}
+
+.titulo-pagina{
+    font-size: 1.5em;
+    font-weight: bold;
+    text-align: center;
+    color: white;
+}
+
+body{
+    background-image: url("../images/background.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+
+}
+
+.descricao-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 1em;
+}
+.descricao{
+    font-size: 1em;
+    font-weight: 400;
+    text-align: start;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.title-container{
+    display: flex;
+    flex-direction: column;
+    line-height:1em;
+}
+
+.title{
+    font-size: 1.2em;
+    font-weight: bold;
+    text-wrap: nowrap;
+}
+
+.subtitle{
+    font-size: 0.9em;
+    font-weight:200;
+}
