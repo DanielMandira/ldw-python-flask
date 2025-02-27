@@ -1,19 +1,19 @@
 {% extends 'base.html' %} {% block content %}
 
-<div class="container-fluid p-5 text-center">
+<div class="container-fluid  p-5 text-center">
   <h1 class="titulo-pagina">Todos os Filmes</h1>
-  <div class="row align-items-start">
+  <div class="movie-container">
     {% for movie in moviesjson %}
-    <div class="col px-2 py-3">
+    <div class="card-container">
       <div class="card">
         <div class="card-content">
           <div class="media">
             <div class="media-left">
-              <figure class="image px-0">
+              <figure class="image p-2">
                 <img
                   class="capa"
                   src="{{ movie.image }}"
-                  alt="Placeholder image"
+                  alt="{{movie.title}}"
                 />
               </figure>
             </div>
@@ -23,14 +23,14 @@
                 <p class="subtitle">{{ movie.original_title }}</p>
               </div>
               <div class="descricao-container">
-                <p class="descricao">{{ movie.description }}</p>
+                <p class="descricao">{{ movie.description  }}</p>
               </div>
             </div>
           </div>
         </div>
-        <footer class="card-footer">
-          <a href="/movies/{{ movie.id }}" class="card-footer-item">Detalhes</a>
-        </footer>
+        <div class="card-footer">
+          <a href="{{url_for('movie', id=movie.id)}}" class="card-footer-item">Detalhes</a>
+        </div>
       </div>
     </div>
     {% endfor %}
