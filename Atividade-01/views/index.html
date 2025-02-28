@@ -1,4 +1,105 @@
-{% extends 'base.html' %} 
-{% block content %}
-<h1 class="title">Bem-vindo ao seu portal para o encantador universo do Studio Ghibli, onde a magia e a realidade se encontram em histórias inesquecíveis.</h1>
+{% extends 'base.html' %} {% block content %}
+
+<div
+  id="carouselIndicators"
+  class="carousel carousel-fade slide"
+  data-bs-ride="carousel"
+  data-bs-interval="3000"
+  data-bs-pause="false"
+>
+  <div class="carousel-indicators">
+    {% for movie in moviesjson[3:6] %}
+    <button
+      type="button"
+      data-bs-target="#carouselIndicators"
+      data-bs-slide-to="{{loop.index0}}"
+      class="{% if loop.first %}active{%endif%}"
+      aria-label="Slide {{loop.index}}"
+    ></button>
+    {% endfor %}
+  </div>
+  <div class="carousel-inner">
+    {% for movie in moviesjson[3:6] %}
+    <div class="carousel-item {% if loop.first %}active{%endif%}">
+      <img
+        src="{{movie.movie_banner}}"
+        class="d-block image-carousel"
+        alt="{{movie.title}}"
+      />
+    </div>
+    {% endfor %}
+  </div>
+  <button
+    class="carousel-control-prev"
+    type="button"
+    data-bs-target="#carouselIndicators"
+    data-bs-slide="prev"
+  >
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
+  <button
+    class="carousel-control-next"
+    type="button"
+    data-bs-target="#carouselIndicators"
+    data-bs-slide="next"
+  >
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
+</div>
+<br />
+<div class="container-fluid p-3 text-start">
+  <div style="display: flex; flex-direction: column; align-items: start; width: 50%; background-color: azure;">
+    <h2>Studio Ghibli</h2>
+    <hr />
+    <p>
+      Studio Ghibli, Inc. (株式会社スタジオジブリ, Kabushiki gaisha Sutajio
+      Jiburi) é um estúdio de animação japonês sediado em Koganei, Tóquio. Tem
+      forte presença na indústria de animação e ampliou seu portfólio para
+      incluir diversos formatos de mídia, como curtas-metragens, comerciais de
+      televisão e dois filmes para televisão. Seu trabalho foi bem recebido pelo
+      público e reconhecido com inúmeros prêmios. Seu mascote e símbolo mais
+      reconhecível, o personagem Totoro, é um espírito gigante inspirado em
+      cães-guaxinim (tanuki) e gatos do filme de 1988 Tonari no Totoro. Entre os
+      filmes de maior bilheteria do estúdio estão Sen to Chihiro no Kamikakushi
+      (2001), Hauru no Ugoku Shiro (2004) e Gake no ue no Ponyo (2008). O Studio
+      Ghibli foi fundado em 15 de junho de 1985, pelos diretores Hayao Miyazaki
+      e Isao Takahata e pelo produtor Toshio Suzuki, após adquirir os ativos da
+      Topcraft. O estúdio também colaborou com estúdios de videogame no
+      desenvolvimento visual de diversos jogos.
+    </p>
+  </div>
+  <br />
+  <h2>Nome</h2>
+  <hr />
+  <p>
+    O nome "Ghibli" foi escolhido por Miyazaki do substantivo italiano ghibli
+    (também usado em inglês), uma italianização do nome árabe líbio para um
+    vento quente do deserto (جبلي; ghiblī) e apelido da aeronave italiana
+    Caproni Ca.309. O nome foi escolhido por Miyazaki devido à sua paixão pela
+    aviação e também pela ideia de que o estúdio iria “soprar novos ventos na
+    indústria de anime”. Embora a palavra italiana fosse transliterada com mais
+    precisão como "Giburi" (ギブリ), com um som g forte, o nome do estúdio é
+    escrito em japonês como Jiburi (ジブリ, [d͡ʑiꜜbɯ̟ᵝɾʲi]).
+  </p>
+  <br />
+  <h2>Estilos e temas</h2>
+  <p>
+    Os filmes do Studio Ghibli são em sua maioria desenhados à mão com água e
+    tintas acrílicas. Os filmes utilizam métodos tradicionais de animação onde
+    cada quadro é desenhado e colorido à mão. Técnicas de animação por
+    computador são usadas com moderação. Todos os filmes do Studio Ghibli usam
+    cores brilhantes, e têm uma "estética extravagante e alegre". O estilo de
+    arte do Studio Ghibli tende a ser um estilo europeu mais aconchegante, que
+    dá muitos tons ao fundo e à natureza da cena.
+    <br />
+    <br />
+    Os filmes muitas vezes enfocam a vida dos jovens, especialmente das crianças
+    em idade escolar. Os temas comuns incluem os riscos representados pelo
+    progresso para a tradição, o ambientalismo e o mundo natural, protagonistas
+    femininas independentes, o custo da guerra e a juventude.
+  </p>
+  <hr />
+</div>
 {% endblock content %}

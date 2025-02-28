@@ -8,6 +8,7 @@
       name="viewport"
       content="width=device-width, initial-scale=1, shrink-to-fit=no"
     />
+    <link rel="icon" href="{{url_for('static', filename='images/logo.png')}}" type="image/x-icon" />
     <link
     rel="stylesheet"
     href="{{url_for('static', filename='css/style.css')}}"
@@ -24,7 +25,7 @@
 
   <body>
     <header>
-        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <nav class="navbar z-2 navbar-expand-lg navbar-dark bg-dark">
             <div class="container-fluid">
               <img class="logo" src="{{url_for('static', filename='images/totoro.png')}}" alt="Mundo Ghibli" />
               <a class="navbar-brand" href="{{url_for('home')}}">Mundo Ghibli</a>
@@ -32,18 +33,18 @@
                 <span class="navbar-toggler-icon"></span>
               </button>
               <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav">
+                <ul class="navbar-nav ms-auto">
                   <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="{{url_for('home')}}">Home</a>
+                    <a class="nav-link {% if request.endpoint == 'home' %}active{% endif %} " aria-current="page" href="{{url_for('home')}}">Home</a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link" href="{{url_for('movies')}}">Filmes</a>
+                    <a class="nav-link {% if request.endpoint == 'movies' %}active{% endif %}" href="{{url_for('movies')}}">Filmes</a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link" href="{{url_for('favoritos')}}">favoritos</a>
+                    <a class="nav-link {% if request.endpoint == 'favoritos' %}active{% endif %}" href="{{url_for('favoritos')}}">favoritos</a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link" href="{{url_for('cadfavoritos')}}">Cadastrar Favoritos</a>
+                    <a class="nav-link {% if request.endpoint == 'cadfavoritos' %}active{% endif %}" href="{{url_for('cadfavoritos')}}">Cadastrar Favoritos</a>
                   </li>
                 </ul>
               </div>
