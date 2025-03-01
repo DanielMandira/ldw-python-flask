@@ -1,105 +1,200 @@
-{% extends 'base.html' %} {% block content %}
-
-<div
-  id="carouselIndicators"
-  class="carousel carousel-fade slide"
-  data-bs-ride="carousel"
-  data-bs-interval="3000"
-  data-bs-pause="false"
->
-  <div class="carousel-indicators">
-    {% for movie in moviesjson[3:6] %}
-    <button
-      type="button"
-      data-bs-target="#carouselIndicators"
-      data-bs-slide-to="{{loop.index0}}"
-      class="{% if loop.first %}active{%endif%}"
-      aria-label="Slide {{loop.index}}"
-    ></button>
-    {% endfor %}
-  </div>
-  <div class="carousel-inner">
-    {% for movie in moviesjson[3:6] %}
-    <div class="carousel-item {% if loop.first %}active{%endif%}">
-      <img
-        src="{{movie.movie_banner}}"
-        class="d-block image-carousel"
-        alt="{{movie.title}}"
-      />
+{% extends 'base.html' %} 
+{% block content %}
+<div class="container-index">
+  <img
+    class="image-ghibli img-fluid"
+    src="{{url_for('static', filename='images/studio_ghibli.png')}}"
+    alt="Studio Ghibli"
+  />
+  <div class="container-info">
+    <!-- Introdução -->
+    <div>
+      <h1>Studio Ghibli</h1>
+      <hr />
+      <p>
+        O <strong>Studio Ghibli</strong> (株式会社スタジオジブリ, Kabushiki
+        gaisha Sutajio Jiburi) é um estúdio de animação japonês fundado em 15 de
+        junho de 1985 pelos diretores <strong> <span class="founder-name" data-founder="miyazaki">Hayao Miyazaki</span></strong>,
+        <strong><span class="founder-name" data-founder="takahata">Isao Takahata</span></strong> e pelo produtor
+        <strong> <span class="founder-name" data-founder="suzuki">Toshio Suzuki</span></strong>. Com sede em Koganei, Tóquio, o estúdio é
+        reconhecido mundialmente por seus filmes de animação de alta qualidade,
+        que combinam narrativas ricas com animação meticulosamente detalhada.
+      </p>
+      <!-- Modal -->
+      <div id="founder-modal" class="founder-modal">
+        <div class="modal-content">
+          <h3 id="modal-title"></h3>
+          <p id="modal-description"></p>
+        </div>
+      </div>
+      <p>
+        O Studio Ghibli produziu alguns dos filmes de animação mais aclamados da
+        história, como <em>A Viagem de Chihiro</em> (2001), que ganhou o Oscar
+        de Melhor Filme de Animação, e <em>O Castelo no Céu</em> (1986). O
+        estúdio também é conhecido por seus temas recorrentes, como a relação
+        entre humanos e natureza, protagonistas femininas fortes e críticas
+        sociais sutis.
+      </p>
     </div>
-    {% endfor %}
+
+    <!-- História -->
+    <div>
+      <h2>História</h2>
+      <hr />
+      <p>
+        O Studio Ghibli foi fundado em 1985, após o sucesso do filme
+        <em>Nausicaä do Vale do Vento</em> (1984), dirigido por  <span class="founder-name" data-founder="miyazaki">Hayao Miyazaki</span>.
+        O estúdio rapidamente se estabeleceu como uma força criativa na
+        indústria de animação, com uma abordagem única que combina técnicas
+        tradicionais de animação com narrativas profundas e emocionantes.
+      </p>
+      <p>
+        Em 2001, o estúdio alcançou reconhecimento internacional com o
+        lançamento de <em>A Viagem de Chihiro</em>, que se tornou o filme de
+        maior bilheteria da história do Japão e ganhou o Oscar de Melhor Filme
+        de Animação. Em 2013,  <span class="founder-name" data-founder="miyazaki">Hayao Miyazaki</span> anunciou sua aposentadoria, mas
+        retornou em 2017 para dirigir <em>How Do You Live?</em>, lançado em
+        2023.
+      </p>
+    </div>
+
+    <!-- Nome -->
+    <div>
+      <h2>Nome</h2>
+      <hr />
+      <p>
+        O nome "Ghibli" foi escolhido por  <span class="founder-name" data-founder="miyazaki">Hayao Miyazaki</span>, inspirado no vento
+        quente do deserto do Saara, conhecido como "ghibli". Miyazaki queria que
+        o estúdio "soprasse um novo vento" na indústria de animação. Apesar da
+        pronúncia correta em italiano ser "giburi", o nome foi adaptado para o
+        japonês como "Jiburi" (ジブリ).
+      </p>
+    </div>
+
+    <!-- Estilos e Temas -->
+    <div>
+      <h2>Estilos e Temas</h2>
+      <hr />
+      <p>
+        Os filmes do Studio Ghibli são conhecidos por sua animação
+        meticulosamente detalhada, feita principalmente à mão, com o uso
+        limitado de computação gráfica. Os filmes frequentemente exploram temas
+        como:
+      </p>
+      <ul>
+        <li>A relação entre humanos e natureza.</li>
+        <li>Protagonistas femininas fortes e independentes.</li>
+        <li>Críticas sociais e políticas sutis.</li>
+        <li>A magia do cotidiano e a importância da infância.</li>
+      </ul>
+      <p>
+        O estúdio também é conhecido por suas paisagens deslumbrantes e
+        personagens cativantes, que criam um senso de nostalgia e admiração.
+      </p>
+    </div>
+
+    <!-- Filmes Notáveis -->
+    <div>
+      <h2>Filmes Notáveis</h2>
+      <hr />
+      <p>Alguns dos filmes mais famosos do Studio Ghibli incluem:</p>
+      <ul>
+        <li>
+          <strong>A Viagem de Chihiro</strong> (2001) - Vencedor do Oscar de
+          Melhor Filme de Animação.
+        </li>
+        <li>
+          <strong>Meu Amigo Totoro</strong> (1988) - Introduziu o icônico
+          personagem Totoro.
+        </li>
+        <li>
+          <strong>O Castelo no Céu</strong> (1986) - O primeiro filme oficial do
+          estúdio.
+        </li>
+        <li>
+          <strong>Princesa Mononoke</strong> (1997) - Um épico ambientalista.
+        </li>
+        <li>
+          <strong>O Castelo Animado</strong> (2004) - Baseado no livro de Diana
+          Wynne Jones.
+        </li>
+      </ul>
+    </div>
+
+    <!-- Sede e Informações Corporativas -->
+    <div>
+      <h2>Sede e Informações Corporativas</h2>
+      <hr />
+      <p>
+        O Studio Ghibli está localizado em Koganei, Tóquio, Japão. A sede do
+        estúdio é conhecida por seu design único, que reflete a criatividade e a
+        filosofia do estúdio.
+      </p>
+      <img
+        src="{{url_for('static', filename='images/sede.jpg')}}"
+        alt="Studio Ghibli sede"
+        class="img-fluid"
+      />
+      <p><em>Sede do Studio Ghibli em Koganei, Tóquio.</em></p>
+      <br />
+      <div>
+        <p><strong>Nome nativo:</strong> 株式会社スタジオジブリ</p>
+        <p><strong>Nome romanizado:</strong> Kabushiki gaisha Sutajio Jiburi</p>
+        <p>
+          <strong>Fundadores:</strong> <span class="founder-name" data-founder="miyazaki">Hayao Miyazaki</span>, <span class="founder-name" data-founder="takahata">Isao Takahata</span>,  <span class="founder-name" data-founder="suzuki">Toshio Suzuki</span>
+        </p>
+        <p><strong>Fundado em:</strong> 15 de junho de 1985</p>
+        <p><strong>Indústria:</strong> Animação</p>
+      </div>
+    </div>
   </div>
-  <button
-    class="carousel-control-prev"
-    type="button"
-    data-bs-target="#carouselIndicators"
-    data-bs-slide="prev"
-  >
-    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-    <span class="visually-hidden">Previous</span>
-  </button>
-  <button
-    class="carousel-control-next"
-    type="button"
-    data-bs-target="#carouselIndicators"
-    data-bs-slide="next"
-  >
-    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-    <span class="visually-hidden">Next</span>
-  </button>
 </div>
-<br />
-<div class="container-fluid p-3 text-start">
-  <div style="display: flex; flex-direction: column; align-items: start; width: 50%; background-color: azure;">
-    <h2>Studio Ghibli</h2>
-    <hr />
-    <p>
-      Studio Ghibli, Inc. (株式会社スタジオジブリ, Kabushiki gaisha Sutajio
-      Jiburi) é um estúdio de animação japonês sediado em Koganei, Tóquio. Tem
-      forte presença na indústria de animação e ampliou seu portfólio para
-      incluir diversos formatos de mídia, como curtas-metragens, comerciais de
-      televisão e dois filmes para televisão. Seu trabalho foi bem recebido pelo
-      público e reconhecido com inúmeros prêmios. Seu mascote e símbolo mais
-      reconhecível, o personagem Totoro, é um espírito gigante inspirado em
-      cães-guaxinim (tanuki) e gatos do filme de 1988 Tonari no Totoro. Entre os
-      filmes de maior bilheteria do estúdio estão Sen to Chihiro no Kamikakushi
-      (2001), Hauru no Ugoku Shiro (2004) e Gake no ue no Ponyo (2008). O Studio
-      Ghibli foi fundado em 15 de junho de 1985, pelos diretores Hayao Miyazaki
-      e Isao Takahata e pelo produtor Toshio Suzuki, após adquirir os ativos da
-      Topcraft. O estúdio também colaborou com estúdios de videogame no
-      desenvolvimento visual de diversos jogos.
-    </p>
-  </div>
-  <br />
-  <h2>Nome</h2>
-  <hr />
-  <p>
-    O nome "Ghibli" foi escolhido por Miyazaki do substantivo italiano ghibli
-    (também usado em inglês), uma italianização do nome árabe líbio para um
-    vento quente do deserto (جبلي; ghiblī) e apelido da aeronave italiana
-    Caproni Ca.309. O nome foi escolhido por Miyazaki devido à sua paixão pela
-    aviação e também pela ideia de que o estúdio iria “soprar novos ventos na
-    indústria de anime”. Embora a palavra italiana fosse transliterada com mais
-    precisão como "Giburi" (ギブリ), com um som g forte, o nome do estúdio é
-    escrito em japonês como Jiburi (ジブリ, [d͡ʑiꜜbɯ̟ᵝɾʲi]).
-  </p>
-  <br />
-  <h2>Estilos e temas</h2>
-  <p>
-    Os filmes do Studio Ghibli são em sua maioria desenhados à mão com água e
-    tintas acrílicas. Os filmes utilizam métodos tradicionais de animação onde
-    cada quadro é desenhado e colorido à mão. Técnicas de animação por
-    computador são usadas com moderação. Todos os filmes do Studio Ghibli usam
-    cores brilhantes, e têm uma "estética extravagante e alegre". O estilo de
-    arte do Studio Ghibli tende a ser um estilo europeu mais aconchegante, que
-    dá muitos tons ao fundo e à natureza da cena.
-    <br />
-    <br />
-    Os filmes muitas vezes enfocam a vida dos jovens, especialmente das crianças
-    em idade escolar. Os temas comuns incluem os riscos representados pelo
-    progresso para a tradição, o ambientalismo e o mundo natural, protagonistas
-    femininas independentes, o custo da guerra e a juventude.
-  </p>
-  <hr />
-</div>
+<script>
+  // Dados dos fundadores
+  const founders = {
+    miyazaki: {
+      title: "Hayao Miyazaki",
+      description: "Hayao Miyazaki é um diretor, animador e roteirista japonês. Ele é cofundador do Studio Ghibli e dirigiu filmes icônicos como 'A Viagem de Chihiro' e 'Meu Amigo Totoro'."
+    },
+    takahata: {
+      title: "Isao Takahata",
+      description: "Isao Takahata foi um diretor e produtor japonês. Ele cofundou o Studio Ghibli e dirigiu filmes aclamados como 'O Túmulo dos Vagalumes' e 'Pom Poko'."
+    },
+    suzuki: {
+      title: "Toshio Suzuki",
+      description: "Toshio Suzuki é um produtor japonês e cofundador do Studio Ghibli. Ele desempenhou um papel crucial na produção e promoção dos filmes do estúdio."
+    }
+  };
+
+  // Selecionar elementos
+  const founderNames = document.querySelectorAll('.founder-name');
+  const modal = document.getElementById('founder-modal');
+  const modalTitle = document.getElementById('modal-title');
+  const modalDescription = document.getElementById('modal-description');
+
+  // Adicionar eventos de mouse
+  founderNames.forEach((founder) => {
+    founder.addEventListener('mouseenter', (e) => {
+      const founderKey = e.target.getAttribute('data-founder');
+      const founderData = founders[founderKey];
+
+      // Atualizar o conteúdo do modal
+      modalTitle.textContent = founderData.title;
+      modalDescription.textContent = founderData.description;
+
+      // Posicionar o modal próximo ao nome
+      const rect = e.target.getBoundingClientRect();
+      modal.style.top = `${rect.bottom + window.scrollY}px`;
+      modal.style.left = `${rect.left + window.scrollX}px`;
+
+      // Exibir o modal
+      modal.classList.add('active');
+    });
+
+    founder.addEventListener('mouseleave', () => {
+      // Esconder o modal
+      modal.classList.remove('active');
+    });
+  });
+</script>
 {% endblock content %}

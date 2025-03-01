@@ -34,11 +34,12 @@ def init_app(app):
     
     @app.route('/favoritos', methods=['GET', 'POST'])
     def favoritos():
+        moviesjson = fetch_movies()
         if request.method == 'POST':
             if request.form.get('streaming'):
                 streaming.append(request.form.get('streaming'))
                 return redirect(url_for('favoritos'))
-        return render_template('favoritos.html', favoritos=favoritos, streaming=streaming)
+        return render_template('favoritos.html', favoritos=favoritos, streaming=streaming, moviesjson=moviesjson)
     
     @app.route('/cadfavoritos', methods=['GET', 'POST'])
     def cadfavoritos():
