@@ -1,4 +1,77 @@
-{%extends 'base.html'%}
-{%block content%}
-<img src="{{movieinfo.movie_banner}}" alt="{{movieinfo.title}}" />
+{%extends 'base.html'%} {%block content%}
+<div class="movieinfo-container">
+  <h1>{{movieinfo.title}}</h1>
+  <div class="original-title">
+    <h2>
+      {{movieinfo.original_title}} - {{movieinfo.original_title_romanised}}
+    </h2>
+  </div>
+  <br />
+  <div class="movieinfo-image">
+    ]
+    <img
+      class="movie-image"
+      src="{{movieinfo.image}}"
+      alt="{{movieinfo.image}}"
+    />
+    <img
+      class="movie-banner"
+      src="{{movieinfo.movie_banner}}"
+      alt="{{movieinfo.banner}}"
+    />
+  </div>
+  <br />
+  <div class="movieinfo-content">
+    <div class="info">
+      <h3>Descrição</h3>
+      <hr />
+      <p>{{movieinfo.description}}</p>
+    </div>
+    <div class="info">
+      <h3>Diretor</h3>
+      <hr />
+
+      <p>{{movieinfo.director}}</p>
+    </div>
+    <div class="info">
+      <h3>Produtor</h3> <hr />
+
+      <p>{{movieinfo.producer}}</p>
+    </div>
+    <div class="info">
+      <h3>Lançamento</h3> <hr />
+
+      <p>{{movieinfo.release_date}}</p>
+    </div>
+    <div class="info">
+      <h3>Classificação</h3> <hr />
+
+      <p>{{movieinfo.rt_score}} pontos</p>
+    </div>
+    <div class="info">
+      <h3>Tempo de Duração</h3> <hr />
+
+      <p>{{movieinfo.running_time}} Minutos</p>
+    </div>
+    <div class="info">
+      <h3>Personagens</h3> <hr />
+
+      <ul>
+        {% for character in movieinfo.filtered_people %}
+        <li>{{ character.name }} - {{ character.gender }}</li>
+        {% endfor %}
+      </ul>
+    </div>
+    <div class="info">
+      <h3>Espécies</h3> <hr />
+
+      <ul>
+        {% for species in movieinfo.filtered_species %}
+        <li>{{ species.name }}</li>
+        {% endfor %}
+      </ul>
+    </div>
+  </div>
+</div>
+
 {%endblock content%}

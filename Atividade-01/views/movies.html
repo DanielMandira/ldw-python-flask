@@ -5,6 +5,7 @@
   <div class="movie-container">
     {% for movie in moviesjson %}
     <div class="card-container">
+      <a href="{{url_for('movie', id=movie.id)}}" class="card-footer-item">
       <div class="card">
         <div class="card-content">
           <div class="media">
@@ -28,9 +29,7 @@
             </div>
           </div>
         </div>
-        <div class="card-footer">
-          <a href="{{url_for('movie', id=movie.id)}}" class="card-footer-item">Detalhes</a>
-        </div>
+      </a>
       </div>
     </div>
     {% endfor %}

@@ -26,7 +26,7 @@
 
   <body>
     <header>
-        <nav class="navbar z-2 navbar-expand-lg navbar-dark bg-dark">
+        <nav class="navbar z-2 navbar-expand-lg navbar-dark">
             <div class="container-fluid">
               <img class="logo" src="{{url_for('static', filename='images/totoro.png')}}" alt="Mundo Ghibli" />
               <a class="navbar-brand" href="{{url_for('home')}}">Mundo Ghibli</a>
@@ -55,7 +55,11 @@
         <!-- conteudo da pagina -->
         {% endblock content%}</main>
     <footer>
-      <!-- place footer here -->
+      <a href="https://github.com/DanielMandira" target="_blank" rel="noopener noreferrer"><img class="footer-img" src="{{url_for('static', filename='images/github.webp')}}" alt="Github" /></a>
+      <div class="footer-container">
+        <p>Atividade LDW DSM4 - FATEC REGISTRO</p>
+        <p>Desenvolvido por <strong>Daniel Mandira</strong></p>
+      </div>
     </footer>
     <!-- Bootstrap JavaScript Libraries -->
     <script

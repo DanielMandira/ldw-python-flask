@@ -15,11 +15,38 @@ def fetch_movies():
     return json.loads(data)
 
 def fetch_movie(movie_id):
+    """ Busca informações do filme, incluindo personagens e espécies específicas do filme. """
     url = f'https://ghibliapi.vercel.app/films/{movie_id}'
+    
     try:
         response = urllib.request.urlopen(url)
-        data = response.read()
-        return json.loads(data)
+        data = json.loads(response.read())
+        
+        # Buscar os personagens do filme
+        movie_characters = []
+        for person_url in data.get("people", []):
+            try:
+                response = urllib.request.urlopen(person_url)
+                character = json.loads(response.read())
+                movie_characters.append(character)
+            except urllib.error.HTTPError:
+                pass  # Ignorar erro caso o personagem não exista
+
+        # Buscar as espécies do filme
+        movie_species = []
+        for species_url in data.get("species", []):
+            try:
+                response = urllib.request.urlopen(species_url)
+                species_data = json.loads(response.read())
+                movie_species.append(species_data)
+            except urllib.error.HTTPError:
+                pass  # Ignorar erro caso a espécie não exista
+
+        # Adicionar os dados filtrados ao filme
+        data["filtered_people"] = movie_characters
+        data["filtered_species"] = movie_species
+
+        return data
     except urllib.error.HTTPError as e:
         if e.code == 404:
             return None
@@ -53,11 +80,12 @@ def init_app(app):
     def movies():
         moviesjson = fetch_movies()
         return render_template('movies.html', moviesjson=moviesjson)
-    @app.route('/movie/<id>', methods=['GET', 'POST'])
+    @app.route('/movie/<id>', methods=['GET'])
     def movie(id):
         movieinfo = fetch_movie(id)
         if movieinfo:
-            return render_template('movieinfo.html', movieinfo=movieinfo)
+            return render_template('movieinfo.html', movieinfo=movieinfo)  # Correto
         else:
-            return 'Filme não encontrado', 404
+            return render_template('error.html', message="Filme não encontrado"), 404
+
         

@@ -64,6 +64,11 @@ body{
     flex-direction: column;
     justify-content: center;
     align-items: center;
+ 
+}
+.card a{
+    text-decoration: none;
+    color: black;
 }
 
 
@@ -136,42 +141,182 @@ body{
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    padding-block: 3em;
+    background-color: #5AA3BF19;
+    backdrop-filter: blur(2px);
+    -webkit-backdrop-filter: blur(2px);
 }
+footer{
+    padding: 1em;
+    display: flex;
+    flex-direction: row;
+    background-color: #092640;
+    align-items: space-evenly;
+    justify-content: space-evenly;
 
-.image-ghibli{
+}
+.carousel-3d {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    perspective: 1000px;
     width: 100%;
-    height: 30em;
+    height: 40em;
+    overflow: hidden;
 }
 
-.container-info{
-    display: grid;
-    grid-template-columns: 1.8fr 1fr;
-    grid-row: auto;
-    background-color: rgb(255, 255, 255);
-    padding-top: 2em;
-    padding-inline: 3em;
-    backdrop-filter: blur(3px);
-}
-
-/* Estilo do modal */
-.founder-modal {
-    display: none; /* Escondido por padrão */
+.carousel-card {
     position: absolute;
+    width: 28em;
+    height: 38em;
     background-color: white;
-    border: 1px solid #ccc;
     border-radius: 8px;
-    padding: 16px;
+    padding: 2em;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    z-index: 1000;
-    max-width: 300px;
+    transition: transform 0.5s ease-in-out, opacity 0.5s ease-in-out;
+    transform-origin: center;
+}
+ 
+
+.navbar{
+    background-color: #092640;
+}
+.sede-img{
+    width: 100%;
+    height: 13em;
+    border-radius: 0.3em;
 }
 
-/* Estilo do conteúdo do modal */
-.modal-content h3 {
-    margin-top: 0;
+.carousel-card.active {
+    transform: translateX(0) scale(1);
+    opacity: 1;
+    z-index: 3;
 }
 
-/* Mostrar o modal quando estiver ativo */
-.founder-modal.active {
-    display: block;
+.carousel-card.left {
+    transform: translateX(-120%) scale(0.8);
+    opacity: 0.7;
+    z-index: 2;
+}
+
+.carousel-card.right {
+    transform: translateX(120%) scale(0.8);
+    opacity: 0.7;
+    z-index: 2;
+}
+
+.carousel-card.hidden {
+    transform: translateX(0) scale(0);
+    opacity: 0;
+    z-index: 1;
+}
+
+.carousel-controls{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 1em;
+}
+
+#prev-btn, #next-btn{
+    background-color: #2B678C;
+    color: white;
+    opacity: 0.8;
+    border: none;
+    border-radius: 0.5em;
+    padding: 0.5em 1em;
+}
+
+#prev-btn:hover, #next-btn:hover{
+    background-color: #3781af;
+    color: white;
+    border: none;
+    opacity: 1;
+    border-radius: 0.5em;
+    padding: 0.5em 1em;
+    
+}
+
+.footer-img{
+    width: 4em;
+    height: 4em;
+    filter: brightness(0) invert(1);
+}
+
+.footer-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: white;
+}
+
+.movieinfo-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 1em;
+    background-color: #A2E4F217;
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    h1, h2{
+        color: white;
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 2.2em;
+        font-weight: 700;
+    }
+    h3{
+        color: white;
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 1.5em;
+        font-weight: 500;
+    }
+    p, li{
+        color: white;
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 1.2em;
+        font-weight: 300;
+    }
+    .original-title{
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+
+    }
+}
+
+.movieinfo-image{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    height: 45em;
+    gap: 1em;
+    .movie-image{
+        width: 100%;
+        height: 100%;
+        border-radius: 0.3em;
+    }
+    .movie-banner{
+        width: 100%;
+        height: 100%;
+        border-radius: 0.3em;
+    }
+}
+.movieinfo-content{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3em;
+}
+
+.info{
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    hr{
+        width: 100%;
+        color: white;
+    }
 }

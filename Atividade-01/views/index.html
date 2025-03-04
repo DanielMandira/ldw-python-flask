@@ -1,49 +1,32 @@
-{% extends 'base.html' %} 
-{% block content %}
+{% extends 'base.html' %} {% block content %}
 <div class="container-index">
-  <img
-    class="image-ghibli img-fluid"
-    src="{{url_for('static', filename='images/studio_ghibli.png')}}"
-    alt="Studio Ghibli"
-  />
-  <div class="container-info">
-    <!-- Introdução -->
-    <div>
+  <div class="carousel-3d">
+    <!-- Card 1: Introdução -->
+    <div class="carousel-card">
       <h1>Studio Ghibli</h1>
       <hr />
       <p>
         O <strong>Studio Ghibli</strong> (株式会社スタジオジブリ, Kabushiki
         gaisha Sutajio Jiburi) é um estúdio de animação japonês fundado em 15 de
-        junho de 1985 pelos diretores <strong> <span class="founder-name" data-founder="miyazaki">Hayao Miyazaki</span></strong>,
-        <strong><span class="founder-name" data-founder="takahata">Isao Takahata</span></strong> e pelo produtor
-        <strong> <span class="founder-name" data-founder="suzuki">Toshio Suzuki</span></strong>. Com sede em Koganei, Tóquio, o estúdio é
-        reconhecido mundialmente por seus filmes de animação de alta qualidade,
-        que combinam narrativas ricas com animação meticulosamente detalhada.
+        junho de 1985 pelos diretores <strong> Hayao Miyazaki </strong>,
+        <strong>Isao Takahata </strong>
+        e pelo produtor
+        <strong> >Toshio Suzuki ></strong>.
       </p>
-      <!-- Modal -->
-      <div id="founder-modal" class="founder-modal">
-        <div class="modal-content">
-          <h3 id="modal-title"></h3>
-          <p id="modal-description"></p>
-        </div>
-      </div>
       <p>
         O Studio Ghibli produziu alguns dos filmes de animação mais aclamados da
         história, como <em>A Viagem de Chihiro</em> (2001), que ganhou o Oscar
-        de Melhor Filme de Animação, e <em>O Castelo no Céu</em> (1986). O
-        estúdio também é conhecido por seus temas recorrentes, como a relação
-        entre humanos e natureza, protagonistas femininas fortes e críticas
-        sociais sutis.
+        de Melhor Filme de Animação, e <em>O Castelo no Céu</em> (1986).
       </p>
     </div>
 
-    <!-- História -->
-    <div>
+    <!-- Card 2: História -->
+    <div class="carousel-card">
       <h2>História</h2>
       <hr />
       <p>
         O Studio Ghibli foi fundado em 1985, após o sucesso do filme
-        <em>Nausicaä do Vale do Vento</em> (1984), dirigido por  <span class="founder-name" data-founder="miyazaki">Hayao Miyazaki</span>.
+        <em>Nausicaä do Vale do Vento</em> (1984), dirigido por Hayao Miyazaki.
         O estúdio rapidamente se estabeleceu como uma força criativa na
         indústria de animação, com uma abordagem única que combina técnicas
         tradicionais de animação com narrativas profundas e emocionantes.
@@ -52,18 +35,18 @@
         Em 2001, o estúdio alcançou reconhecimento internacional com o
         lançamento de <em>A Viagem de Chihiro</em>, que se tornou o filme de
         maior bilheteria da história do Japão e ganhou o Oscar de Melhor Filme
-        de Animação. Em 2013,  <span class="founder-name" data-founder="miyazaki">Hayao Miyazaki</span> anunciou sua aposentadoria, mas
+        de Animação. Em 2013, Hayao Miyazaki anunciou sua aposentadoria, mas
         retornou em 2017 para dirigir <em>How Do You Live?</em>, lançado em
         2023.
       </p>
     </div>
 
-    <!-- Nome -->
-    <div>
+    <!-- Card 3: Nome -->
+    <div class="carousel-card">
       <h2>Nome</h2>
       <hr />
       <p>
-        O nome "Ghibli" foi escolhido por  <span class="founder-name" data-founder="miyazaki">Hayao Miyazaki</span>, inspirado no vento
+        O nome "Ghibli" foi escolhido por Hayao Miyazaki , inspirado no vento
         quente do deserto do Saara, conhecido como "ghibli". Miyazaki queria que
         o estúdio "soprasse um novo vento" na indústria de animação. Apesar da
         pronúncia correta em italiano ser "giburi", o nome foi adaptado para o
@@ -71,8 +54,8 @@
       </p>
     </div>
 
-    <!-- Estilos e Temas -->
-    <div>
+    <!-- Card 4: Estilos e Temas -->
+    <div class="carousel-card">
       <h2>Estilos e Temas</h2>
       <hr />
       <p>
@@ -93,8 +76,8 @@
       </p>
     </div>
 
-    <!-- Filmes Notáveis -->
-    <div>
+    <!-- Card 5: Filmes Notáveis -->
+    <div class="carousel-card">
       <h2>Filmes Notáveis</h2>
       <hr />
       <p>Alguns dos filmes mais famosos do Studio Ghibli incluem:</p>
@@ -121,80 +104,73 @@
       </ul>
     </div>
 
-    <!-- Sede e Informações Corporativas -->
-    <div>
+    <!-- Card 6: Sede e Informações Corporativas -->
+    <div class="carousel-card">
       <h2>Sede e Informações Corporativas</h2>
       <hr />
-      <p>
-        O Studio Ghibli está localizado em Koganei, Tóquio, Japão. A sede do
-        estúdio é conhecida por seu design único, que reflete a criatividade e a
-        filosofia do estúdio.
-      </p>
       <img
         src="{{url_for('static', filename='images/sede.jpg')}}"
         alt="Studio Ghibli sede"
-        class="img-fluid"
+        class="sede-img "
       />
       <p><em>Sede do Studio Ghibli em Koganei, Tóquio.</em></p>
-      <br />
       <div>
         <p><strong>Nome nativo:</strong> 株式会社スタジオジブリ</p>
         <p><strong>Nome romanizado:</strong> Kabushiki gaisha Sutajio Jiburi</p>
         <p>
-          <strong>Fundadores:</strong> <span class="founder-name" data-founder="miyazaki">Hayao Miyazaki</span>, <span class="founder-name" data-founder="takahata">Isao Takahata</span>,  <span class="founder-name" data-founder="suzuki">Toshio Suzuki</span>
+          <strong>Fundadores:</strong>
+          Hayao Miyazaki, Isao Takahata, Toshio Suzuki.
         </p>
         <p><strong>Fundado em:</strong> 15 de junho de 1985</p>
         <p><strong>Indústria:</strong> Animação</p>
       </div>
     </div>
   </div>
+
+  <!-- Controles do Carrossel -->
+  <div class="carousel-controls">
+    <button id="prev-btn">Anterior</button>
+    <button id="next-btn">Próximo</button>
+  </div>
 </div>
+
 <script>
-  // Dados dos fundadores
-  const founders = {
-    miyazaki: {
-      title: "Hayao Miyazaki",
-      description: "Hayao Miyazaki é um diretor, animador e roteirista japonês. Ele é cofundador do Studio Ghibli e dirigiu filmes icônicos como 'A Viagem de Chihiro' e 'Meu Amigo Totoro'."
-    },
-    takahata: {
-      title: "Isao Takahata",
-      description: "Isao Takahata foi um diretor e produtor japonês. Ele cofundou o Studio Ghibli e dirigiu filmes aclamados como 'O Túmulo dos Vagalumes' e 'Pom Poko'."
-    },
-    suzuki: {
-      title: "Toshio Suzuki",
-      description: "Toshio Suzuki é um produtor japonês e cofundador do Studio Ghibli. Ele desempenhou um papel crucial na produção e promoção dos filmes do estúdio."
-    }
-  };
+  // JavaScript para o carrossel 3D
+  const cards = document.querySelectorAll(".carousel-card");
+  const prevBtn = document.getElementById("prev-btn");
+  const nextBtn = document.getElementById("next-btn");
 
-  // Selecionar elementos
-  const founderNames = document.querySelectorAll('.founder-name');
-  const modal = document.getElementById('founder-modal');
-  const modalTitle = document.getElementById('modal-title');
-  const modalDescription = document.getElementById('modal-description');
+  let currentIndex = 0;
 
-  // Adicionar eventos de mouse
-  founderNames.forEach((founder) => {
-    founder.addEventListener('mouseenter', (e) => {
-      const founderKey = e.target.getAttribute('data-founder');
-      const founderData = founders[founderKey];
+  function updateCarousel() {
+    const totalCards = cards.length;
 
-      // Atualizar o conteúdo do modal
-      modalTitle.textContent = founderData.title;
-      modalDescription.textContent = founderData.description;
+    cards.forEach((card, index) => {
+      card.classList.remove("active", "left", "right", "hidden");
 
-      // Posicionar o modal próximo ao nome
-      const rect = e.target.getBoundingClientRect();
-      modal.style.top = `${rect.bottom + window.scrollY}px`;
-      modal.style.left = `${rect.left + window.scrollX}px`;
-
-      // Exibir o modal
-      modal.classList.add('active');
+      if (index === currentIndex) {
+        card.classList.add("active");
+      } else if (index === (currentIndex - 1 + totalCards) % totalCards) {
+        card.classList.add("left");
+      } else if (index === (currentIndex + 1) % totalCards) {
+        card.classList.add("right");
+      } else {
+        card.classList.add("hidden");
+      }
     });
+  }
 
-    founder.addEventListener('mouseleave', () => {
-      // Esconder o modal
-      modal.classList.remove('active');
-    });
+  prevBtn.addEventListener("click", () => {
+    currentIndex = (currentIndex - 1 + cards.length) % cards.length;
+    updateCarousel();
   });
+
+  nextBtn.addEventListener("click", () => {
+    currentIndex = (currentIndex + 1) % cards.length;
+    updateCarousel();
+  });
+
+  // Inicializar o carrossel na posição correta
+  updateCarousel();
 </script>
 {% endblock content %}

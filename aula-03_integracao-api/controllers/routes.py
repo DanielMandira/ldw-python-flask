@@ -5,7 +5,9 @@ import urllib
 import json
 # Criando a primeira rota da aplicação #
 players = []
-gameList = [{"title": 'CS-GO', "year": 2012, "category": 'FPS'}]
+gameList = [{"title": 'CS-GO', "year": 2012, "category": 'FPS'}, 
+            {"title": 'LOL', "year": 2009, "category": 'MOBA'}, 
+            {"title": 'Valorant', "year": 2020, "category": 'FPS'}]
 
 
 def init_app(app):
