@@ -1,5 +1,5 @@
 {%extends 'base.html'%} {%block content%}
-<div class="movieinfo-container">
+<div class="container-fluid movieinfo-container">
   <h1>{{movieinfo.title}}</h1>
   <div class="original-title">
     <h2>
@@ -8,7 +8,6 @@
   </div>
   <br />
   <div class="movieinfo-image">
-    ]
     <img
       class="movie-image"
       src="{{movieinfo.image}}"
@@ -34,27 +33,32 @@
       <p>{{movieinfo.director}}</p>
     </div>
     <div class="info">
-      <h3>Produtor</h3> <hr />
+      <h3>Produtor</h3>
+      <hr />
 
       <p>{{movieinfo.producer}}</p>
     </div>
     <div class="info">
-      <h3>Lançamento</h3> <hr />
+      <h3>Lançamento</h3>
+      <hr />
 
       <p>{{movieinfo.release_date}}</p>
     </div>
     <div class="info">
-      <h3>Classificação</h3> <hr />
+      <h3>Classificação</h3>
+      <hr />
 
       <p>{{movieinfo.rt_score}} pontos</p>
     </div>
     <div class="info">
-      <h3>Tempo de Duração</h3> <hr />
+      <h3>Tempo de Duração</h3>
+      <hr />
 
       <p>{{movieinfo.running_time}} Minutos</p>
     </div>
     <div class="info">
-      <h3>Personagens</h3> <hr />
+      <h3>Personagens</h3>
+      <hr />
 
       <ul>
         {% for character in movieinfo.filtered_people %}
@@ -63,7 +67,8 @@
       </ul>
     </div>
     <div class="info">
-      <h3>Espécies</h3> <hr />
+      <h3>Espécies</h3>
+      <hr />
 
       <ul>
         {% for species in movieinfo.filtered_species %}

@@ -2,8 +2,8 @@ from flask import render_template, request, redirect, url_for
 import urllib
 import json
 
-streaming = []
-favoritos = [{"title": 'Castle in the Sky', 
+streaming = ["Netflix"]
+favs = [{"title": 'Castle in the Sky', 
               "movie_banner": "https://image.tmdb.org/t/p/w533_and_h300_bestv2/3cyjYtLWCBE1uvWINHFsFnE8LUK.jpg",
                "description": "The orphan Sheeta inherited a mysterious crystal that links her to the mythical sky-kingdom of Laputa. With the help of resourceful Pazu and a rollicking band of sky pirates, she makes her way to the ruins of the once-great civilization. Sheeta and Pazu must outwit the evil Muska, who plans to use Laputa's science to make himself ruler of the world.",
               }]
@@ -66,15 +66,15 @@ def init_app(app):
             if request.form.get('streaming'):
                 streaming.append(request.form.get('streaming'))
                 return redirect(url_for('favoritos'))
-        return render_template('favoritos.html', favoritos=favoritos, streaming=streaming, moviesjson=moviesjson)
+        return render_template('favoritos.html', favs=favs, streaming=streaming, moviesjson=moviesjson)
     
     @app.route('/cadfavoritos', methods=['GET', 'POST'])
     def cadfavoritos():
         if request.method == 'POST':
             form_data = request.form.to_dict()
-            favoritos.append(form_data)
+            favs.append(form_data)
             return redirect(url_for('cadfavoritos'))
-        return render_template('cadfavoritos.html', favoritos=favoritos)
+        return render_template('cadfavoritos.html', favs=favs)
     
     @app.route('/movies', methods=['GET', 'POST'])
     def movies():

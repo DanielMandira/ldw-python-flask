@@ -1,0 +1,17 @@
+{%extends 'base.html'%}
+{%block content%}
+<h2>Cadastrar Favoritos</h2>
+<hr />
+<form action="{{url_for('cadfavoritos')}}" method="post">
+  <label for="title">Título:</label>
+  <input type="text" name="title" id="title" />
+  <br />
+  <label for="description">Descrição:</label>
+  <textarea name="description" id="description" cols="30" rows="10"></textarea>
+    <br />
+  <label for="movie_banner">Banner:</label>
+  <input type="image" name="movie_banner" id="movie_banner" />
+  <br />
+  <input type="submit" value="Cadastrar" />
+
+{%endblock content%}

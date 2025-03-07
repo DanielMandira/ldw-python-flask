@@ -49,4 +49,45 @@
     <span class="visually-hidden">Next</span>
   </button>
 </div>
+<div>
+  <h2>Sua lista de favoritos</h2>
+  <hr />
+  <div>
+    {%for favorito in favs%}
+    <div class="card">
+      <img
+        src="{{favorito.movie_banner}}"
+        class="card-img-top"
+        alt="{{favorito.title}}"
+      />
+      <div class="card-body">
+        <h5 class="card-title">{{favorito.title}}</h5>
+        <p class="card-text">{{favorito.description}}</p>
+        </div>
+  </div>
+  {%endfor%}
+  <a href="{{url_for('cadfavoritos')}}">Inserir Favoritos</a>
+</div>
+<div>
+  <h2>Lista de Streaming</h2>
+  <hr />
+  <ul>
+    {%for stream in streaming%}
+    <li>{{stream}}</li>
+    {%endfor%}
+  </ul>
+  <h3>Adicionar novos Streamings a sua lista:</h3>
+  <form action="{{url_for('favoritos')}}" method="POST">
+    <div class="mb-3">
+      <label for="streaming" class="form-label">Nome do Streaming</label>
+      <input
+        type="text"
+        class="form-control"
+        id="streaming"
+        name="streaming"
+        required
+      />
+    </div>
+    <button type="submit" class="btn btn-primary">Adicionar</button>
+</div>
 {%endblock content%}
