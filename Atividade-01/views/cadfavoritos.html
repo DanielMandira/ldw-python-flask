@@ -1,17 +1,19 @@
-{%extends 'base.html'%}
-{%block content%}
-<h2>Cadastrar Favoritos</h2>
-<hr />
-<form action="{{url_for('cadfavoritos')}}" method="post">
-  <label for="title">Título:</label>
-  <input type="text" name="title" id="title" />
-  <br />
-  <label for="description">Descrição:</label>
-  <textarea name="description" id="description" cols="30" rows="10"></textarea>
-    <br />
-  <label for="movie_banner">Banner:</label>
-  <input type="image" name="movie_banner" id="movie_banner" />
-  <br />
-  <input type="submit" value="Cadastrar" />
-
-{%endblock content%}
+{% extends 'base.html' %}
+{% block content %}
+<div class="cadastro-container">
+  <h2>Cadastrar Favoritos</h2>
+  <hr />
+  <form class="cadastro-form" action="{{ url_for('cadfavoritos') }}" method="post" enctype="multipart/form-data">
+    <label for="title">Título:</label>
+    <input type="text" name="title" id="title" required />
+    
+    <label for="description">Descrição:</label>
+    <textarea name="description" id="description" cols="30" rows="10" required></textarea>
+    
+    <label for="movie_banner">Banner:</label>
+    <input type="file" name="movie_banner" id="movie_banner" accept="image/*" required />
+    
+    <input type="submit" value="Cadastrar" />
+  </form>
+</div>
+{% endblock content %}
