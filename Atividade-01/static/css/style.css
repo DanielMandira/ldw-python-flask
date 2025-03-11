@@ -16,6 +16,8 @@ body{
     background-image: url("../images/background.jpg");
     background-size: cover;
     background-repeat: no-repeat;
+    background-attachment: fixed;
+    
 
 }
 
@@ -142,8 +144,8 @@ body{
     align-items: center;
     padding-block: 2em;
     background-color: #5AA3BF19;
-    backdrop-filter: blur(2px);
-    -webkit-backdrop-filter: blur(2px);
+    backdrop-filter: blur(3px);
+    -webkit-backdrop-filter: blur(3px);
 }
 footer{
     padding: 1em;
@@ -269,9 +271,9 @@ footer{
     justify-content: center;
     align-items: center;
     padding: 1em;
-    background-color: #A2E4F217;
-    backdrop-filter: blur(5px);
-    -webkit-backdrop-filter: blur(5px);
+    background-color: #5AA3BF19;
+    backdrop-filter: blur(3px);
+    -webkit-backdrop-filter: blur(3px);
     h1, h2{
         color: white;
         font-family: Arial, Helvetica, sans-serif;
@@ -317,7 +319,7 @@ footer{
     }
     
 }
-@media (min-width:1000px) and (max-width:1260px) {
+@media (min-width:1000px) and (max-width:1360px) {
     .movieinfo-image{
         display: flex;
         flex-direction: row;
@@ -337,7 +339,7 @@ footer{
     }
     
 }
-@media (min-width:1260px) {
+@media (min-width:1360px) {
     .movieinfo-image{
         display: flex;
         flex-direction: row;
@@ -478,9 +480,9 @@ h2{
     flex-direction: column;
     padding: 2em 4em;
     border-radius: 1em;
-    background-color: #A2E4F217;
-    backdrop-filter: blur(5px);
-    -webkit-backdrop-filter: blur(5px);
+    background-color: #5AA3BF19;
+    backdrop-filter: blur(3px);
+    -webkit-backdrop-filter: blur(3px);
     h2{
         color: white;
         font-family: Arial, Helvetica, sans-serif;
@@ -523,8 +525,8 @@ h2{
     align-items: center;
     padding: 2em;
     background-color: #5AA3BF19;
-    backdrop-filter: blur(2px);
-    -webkit-backdrop-filter: blur(2px);
+    backdrop-filter: blur(3px);
+    -webkit-backdrop-filter: blur(3px);
     border-radius: 1em;
     margin: 2em auto;
     max-width: 800px;
