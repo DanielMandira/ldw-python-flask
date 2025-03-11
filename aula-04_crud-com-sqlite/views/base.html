@@ -38,14 +38,19 @@
               <li class="nav-item">
                 <a class="nav-link" href="{{url_for('cadgames')}}">Cadastrar Games</a>
               </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{{url_for('estoque')}}">Estoque</a>
+              </li>
             </ul>
           </div>
         </div>
       </nav>
     </header>
+    <div class="container-fluid">
     {% block content %}
     <!-- Aqui ira o conteudo das paginas -->
     {% endblock content %}
+    </div>
     <footer class="footer">
       <hr />
       <p>Desenvolvido por: Daniel Mandira</p>

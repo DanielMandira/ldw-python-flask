@@ -1,27 +1,51 @@
+{% extends 'base.html' %}
+{% block content %}
+<details>
+    <summary>[ Cadastrar novo jogo]</summary>
+    <div class="col-md-4">
+        <form action="{{url_for('estoque')}}" method="post">
+            <input type="text" class="form-control" placeholder="Titulo" name="title" required>
+            <input type="text" class="form-control" placeholder="Ano" name="year" required>
+            <input type="text" class="form-control" placeholder="Categoria" name="category" required>
+            <input type="text" class="form-control" placeholder="Plataforma" name="platform" required>
+            <input type="number" class="form-control" placeholder="Preço" name="price" required>
+            <input type="number" class="form-control" placeholder="Quantidade" name="quantity" required>
+            <br>
+            <button type="submit" class="btn btn-primary">Cadastrar</button>
+            <button type="reset" class="btn btn-danger">Limpar</button>
+        </form>
+    </div>
+</details>
+<hr>
+<br>
+    <h5>Jogos em estoque:</h5>
+    <table class="table table-bordered table-hover">
+        <thead class="table-dark">
+            <tr>
+                <th>Titulo</th>
+                <th>Ano</th>
+                <th>Categoria</th>
+                <th>Plataforma</th>
+                <th>Preço</th>
+                <th>Quantidade</th>
+                <th>Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for game in gamesEstoque%}
+            <tr>
+                <td>{{game.title}}</td>
+                <td>{{game.year}}</td>
+                <td>{{game.category}}</td>
+                <td>{{game.platform}}</td>
+                <td>${{game.price}}</td>
+                <td>{{game.quantity}}</td>
+                <td>
+                    <a href="{{url_for('estoque', id=game.id)}}" class="btn btn-warning">Editar</a>
+                    <a href="{{url_for('estoque', id=game.id)}}" class="btn btn-danger">Excluir</a>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
 
-<!DOCTYPE html>
-<html lang="pt-br">
-<head>
-    <meta charset='utf-8'>
-    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
-    <title>Estoque de Jogos</title>
-    <meta name='viewport' content='width=device-width, initial-scale=1'>
-    <link rel='stylesheet' type='text/css' media='screen' href='main.css'>
-    <script src='main.js'></script>
-</head>
-<body>
-    <h2>Controle de estoque</h2>
-    <hr>
-    {% for game in gamesEstoque%}
-    <p>Titulo: {{game.title}}</p>
-    <p>Ano: {{game.year}}</p>
-    <p>Categoria: {{game.category}}</p>
-    <p>Plataforma: {{game.platform}}</p>
-    <p>Preço: ${{"%.2f"|format(game.price)}}</p> 
-    <p>Quantidade: {{game.quantity}}</p>
-    <hr>
-    {% endfor %}
-
-    
-</body>
-</html>
+{% endblock content %}

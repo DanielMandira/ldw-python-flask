@@ -57,8 +57,14 @@ def init_app(app):
                 return 'Game not found'
         return render_template('apigames.html', gamesjson=gamesjson)
 
-    @app.route('/estoque', methods=['GET', 'POST'])
+    @app.route('/estoque', methods=['GET', 'POST', 'DELETE'])
     def estoque():
+        # Cadastra um novo jogo
+        if request.method == 'POST':
+            newGame = Game(request.form['title'], request.form['year'], request.form['category'], request.form['platform'], request.form['price'], request.form['quantity'])
+            db.session.add(newGame)
+            db.session.commit()
+            return redirect(url_for('estoque'))
         # Método do SQLAlchemy que retorna todos os registros da tabela Game
         gamesEstoque = Game.query.all()
         return render_template('estoque.html', gamesEstoque=gamesEstoque)
