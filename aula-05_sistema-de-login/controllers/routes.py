@@ -1,16 +1,20 @@
-from flask import render_template, request, redirect, url_for
+from flask import render_template, request, redirect, url_for, flash
 # Importando o Model
-from models.database import db, Game
+from models.database import db, Game, User
 # Essa biblioteca serve para ler uma determinada URL
 import urllib
 # Converte dados para o formato json
 import json
+from werkzeug.security import generate_password_hash, check_password_hash
+# Biblioteca para editar a flash message
+from markupsafe import Markup # Inclui HTML dentro das Flash Message
+
 
 jogadores = []
 
-gamelist = [{'titulo': 'CS-GO',
-             'ano': 2012,
-             'categoria': 'FPS Online'}]
+gamelist = [{'title': 'CS-GO',
+             'year': 2012,
+             'category': 'FPS Online'}]
 
 
 def init_app(app):
@@ -78,7 +82,7 @@ def init_app(app):
             
         if request.method == 'POST':
             # Cadastra um novo jogo
-            newgame = Game(request.form['titulo'], request.form['ano'], request.form['categoria'], request.form['plataforma'], request.form['preco'], request.form['quantidade'])
+            newgame = Game(request.form['title'], request.form['year'], request.form['category'], request.form['platform'], request.form['price'], request.form['quantity'])
             # Envia os valores para o banco
             db.session.add(newgame)
             db.session.commit()
@@ -104,12 +108,39 @@ def init_app(app):
         game = Game.query.get(id)
         # Edita o jogo com as informações do formulário
         if request.method == 'POST':
-            game.titulo = request.form['titulo']
-            game.ano = request.form['ano']
-            game.categoria = request.form['categoria']
-            game.plataforma = request.form['plataforma']
-            game.preco = request.form['preco']
-            game.quantidade = request.form['quantidade']
+            game.title = request.form['title']
+            game.year = request.form['year']
+            game.category = request.form['category']
+            game.platform = request.form['platform']
+            game.price = request.form['price']
+            game.quantity = request.form['quantity']
             db.session.commit()
             return redirect(url_for('estoque'))
         return render_template('editgame.html', game=game)
+
+    # Rota de login
+    @app.route('/login', methods=['GET', 'POST'])
+    def login():
+        return render_template('login.html')
+    
+    # Rota de cadastro
+    @app.route('/caduser', methods=['GET', 'POST'])
+    def caduser():
+        if request.method == 'POST':
+            email = request.form['email']
+            password = request.form['password']
+            #Verificando se o usuario já existe
+            user = User.query.filter_by(email=email).first()
+            if user:
+                msg = Markup("<p>Este email já está cadastrado. <a href='/login'>Realize o login!</a></p>")
+                flash(msg,'danger')
+                return redirect(url_for('caduser'))
+            else:
+                # gerando hash
+                hashed_password = generate_password_hash(password, method='scrypt')
+                newUser = User(email=email, password=hashed_password)
+                db.session.add(newUser)
+                db.session.commit()
+                flash('Registro realizado com sucesso', 'success')
+                return redirect(url_for('login'))
+        return render_template('caduser.html')

@@ -1,26 +1,22 @@
-# Importando a biblioteca SQLAlchemy
 from flask_sqlalchemy import SQLAlchemy
-
-# Instanciando a classe SQLAlchemy
+# Criando uma instância do SQLAlchemy
 db = SQLAlchemy()
 
-# Criando a classe Game
-# Essa classe é uma representação da tabela Game no banco de dados
+# Classe responsável por criar a entidade "Games" no banco com seus atributos
 class Game(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    title = db.Column(db.String(100))
-    year = db.Column(db.Integer)
-    category = db.Column(db.String(100))
-    platform = db.Column(db.String(100))
-    price = db.Column(db.Float)
-    quantity = db.Column(db.Integer)
+    titulo = db.Column(db.String(150))
+    ano = db.Column(db.Integer)
+    categoria = db.Column(db.String(150))
+    plataforma = db.Column(db.String(150))
+    preco = db.Column(db.Float)
+    quantidade = db.Column(db.Integer)
     
-    # Metodo construtor da classe
-    def __init__(self, title, year, category, platform, price, quantity):
-        self.title = title
-        self.year = year
-        self.category = category
-        self.platform = platform
-        self.price = price
-        self.quantity = quantity
-        
+    # Método construtor da classe
+    def __init__(self, titulo, ano, categoria, plataforma, preco, quantidade):
+        self.titulo = titulo
+        self.ano = ano
+        self.categoria = categoria
+        self.plataforma = plataforma
+        self.preco = preco
+        self.quantidade = quantidade

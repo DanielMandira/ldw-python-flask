@@ -15,6 +15,10 @@ dir = os.path.abspath(os.path.dirname(__file__))
 # Passando o diretório do banco ao SQLAlchemy
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///' + os.path.join(dir, 'models/games.sqlite3')
 
+# Secret para as flash messages
+app.config['SECRET_KEY'] ='thegamesecret'
+
+
 # Iniciar o servidor
 if __name__ == '__main__':
     db.init_app(app=app)
