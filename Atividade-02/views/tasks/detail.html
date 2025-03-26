@@ -56,13 +56,13 @@
             <h3><i class="fas fa-align-left"></i> Descrição</h3>
             <p>{{ task.description or "Nenhuma descrição fornecida." }}</p>
         </div>
-
+<br>
         <div class="task-actions">
             <a href="{{ url_for('routes.edit', id=task.id) }}" class="btn btn-primary">
                 <i class="fas fa-edit"></i> Editar
             </a>
             <form action="{{ url_for('routes.delete', id=task.id) }}" method="POST" style="display: inline;">
-                <button type="submit" class="btn btn-secondary" onclick="return confirm('Tem certeza que deseja excluir esta tarefa?')">
+                <button type="submit" class="btn btn-danger" onclick="return confirm('Tem certeza que deseja excluir esta tarefa?')">
                     <i class="fas fa-trash-alt"></i> Excluir
                 </button>
             </form>

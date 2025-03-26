@@ -5,13 +5,10 @@ import os
 
 def create_app():
     app = Flask(__name__, template_folder='views')
-    
     # Configurações
     app.config.from_pyfile('config.py')
-    
     # Banco de Dados
     db.init_app(app)
-    
     # Rotas
     init_routes(app)
     

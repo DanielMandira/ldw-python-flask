@@ -87,5 +87,21 @@ def init_routes(app):
             'pending_tasks': pending_tasks,
             'overdue_tasks': overdue_tasks
         })
+    
+    @bp.route('/complete/<int:id>', methods=['POST'])
+    def complete(id):
+        try:
+            task = Task.query.get_or_404(id)
+            
+            if task.status != 'completed':
+                task.status = 'completed'
+                task.end_date = task.end_date or datetime.utcnow()
+                db.session.commit()
+                flash('Tarefa marcada como concluída!', 'success')
         
+        except Exception as e:
+            db.session.rollback()
+            flash(f'Erro ao completar tarefa: {str(e)}', 'danger')
+            
+        return redirect(url_for('routes.detail', id=id))
     app.register_blueprint(bp)
