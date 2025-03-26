@@ -1,0 +1,43 @@
+{% extends "templates/base.html" %}
+
+{% block content %}
+<div class="main-content">
+    <h1>Estatísticas de Tarefas</h1>
+    
+    <div class="dashboard">
+        <div class="stat-card">
+            <h3><i class="fas fa-tasks"></i> Total de Tarefas</h3>
+            <div class="stat-value">{{ stats.total_tasks }}</div>
+        </div>
+        
+        <div class="stat-card">
+            <h3><i class="fas fa-check-circle"></i> Tarefas Concluídas</h3>
+            <div class="stat-value">{{ stats.completed_tasks }}</div>
+        </div>
+        
+        <div class="stat-card">
+            <h3><i class="fas fa-clock"></i> Tarefas Pendentes</h3>
+            <div class="stat-value">{{ stats.pending_tasks }}</div>
+        </div>
+        
+        <div class="stat-card">
+            <h3><i class="fas fa-exclamation-triangle"></i> Tarefas Atrasadas</h3>
+            <div class="stat-value">{{ stats.overdue_tasks }}</div>
+        </div>
+        
+        <div class="chart-container">
+            <h2><i class="fas fa-chart-line"></i> Progresso Mensal</h2>
+            <canvas id="tasksChart" height="100"></canvas>
+        </div>
+        
+        <div class="chart-container">
+            <h2><i class="fas fa-chart-pie"></i> Distribuição por Status</h2>
+            <canvas id="statusChart" height="100"></canvas>
+        </div>
+    </div>
+</div>
+
+<!-- Inclua Chart.js -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="{{ url_for('static', filename='js/app.js') }}"></script>
+{% endblock %}

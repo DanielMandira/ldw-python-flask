@@ -1,17 +1,24 @@
-from flask import Flask, render_template
-from controllers import routes
+from flask import Flask
 from models.database import db
+from controllers.routes import init_routes
 import os
 
-app = Flask(__name__, template_folder='views')
-routes.init_app(app)
-
-dir = os.path.abspath(os.path.dirname(__file__))
-
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///' + os.path.join(dir, 'models/.sqlite3') 
+def create_app():
+    app = Flask(__name__, template_folder='views')
+    
+    # Configurações
+    app.config.from_pyfile('config.py')
+    
+    # Banco de Dados
+    db.init_app(app)
+    
+    # Rotas
+    init_routes(app)
+    
+    return app
 
 if __name__ == '__main__':
-    db.init_app(app=app)
-    with app.test_request_context():
+    app = create_app()
+    with app.app_context():
         db.create_all()
-    app.run(host='0.0.0.0', port=5000, debug=True)
+    app.run(debug=True)

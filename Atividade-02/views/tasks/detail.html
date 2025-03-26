@@ -1,0 +1,79 @@
+{% extends "templates/base.html" %}
+
+{% block content %}
+<div class="main-content">
+    <a href="{{ url_for('routes.index') }}" class="btn btn-back">
+        <i class="fas fa-arrow-left"></i> Voltar para todas as tarefas
+    </a>
+
+    <div class="task-detail">
+        <div class="task-header">
+            <h1 class="task-title">{{ task.title }}</h1>
+            <span class="task-priority-badge priority-{{ task.priority }}">
+                {{ task.priority|upper }}
+            </span>
+        </div>
+
+        <div class="task-meta">
+            <div class="meta-item">
+                <span class="meta-label">Status</span>
+                <span class="meta-value status-{{ task.status }}">
+                    <i class="fas fa-{% if task.status == 'completed' %}check-circle{% elif task.status == 'in_progress' %}spinner{% else %}clock{% endif %}"></i>
+                    {{ task.status|upper|replace('_', ' ') }}
+                </span>
+            </div>
+
+            <div class="meta-item">
+                <span class="meta-label">Data Início</span>
+                <span class="meta-value">
+                    <i class="fas fa-calendar-day"></i>
+                    {{ task.start_date.strftime('%d/%m/%Y') }}
+                </span>
+            </div>
+
+            {% if task.end_date %}
+            <div class="meta-item">
+                <span class="meta-label">Data Término</span>
+                <span class="meta-value">
+                    <i class="fas fa-calendar-check"></i>
+                    {{ task.end_date.strftime('%d/%m/%Y') }}
+                </span>
+            </div>
+            {% endif %}
+
+            {% if task.estimated_hours %}
+            <div class="meta-item">
+                <span class="meta-label">Horas Estimadas</span>
+                <span class="meta-value">
+                    <i class="fas fa-clock"></i>
+                    {{ task.estimated_hours }}h
+                </span>
+            </div>
+            {% endif %}
+        </div>
+
+        <div class="task-description">
+            <h3><i class="fas fa-align-left"></i> Descrição</h3>
+            <p>{{ task.description or "Nenhuma descrição fornecida." }}</p>
+        </div>
+
+        <div class="task-actions">
+            <a href="{{ url_for('routes.edit', id=task.id) }}" class="btn btn-primary">
+                <i class="fas fa-edit"></i> Editar
+            </a>
+            <form action="{{ url_for('routes.delete', id=task.id) }}" method="POST" style="display: inline;">
+                <button type="submit" class="btn btn-secondary" onclick="return confirm('Tem certeza que deseja excluir esta tarefa?')">
+                    <i class="fas fa-trash-alt"></i> Excluir
+                </button>
+            </form>
+            {% if task.status != 'completed' %}
+            <form action="{{ url_for('routes.complete', id=task.id) }}" method="POST" style="display: inline;">
+                <button type="submit" class="btn btn-success">
+                    <i class="fas fa-check"></i> Concluir
+                </button>
+            </form>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %}
