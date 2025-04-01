@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+
+{% block title %}CarDream - Galeria de Carros{% endblock %}
+
+{% block content %}
+<section class="hero">
+    <div class="hero-content">
+        <h2>Bem-vindo ao CarDream</h2>
+        <p>Descubra nossa coleção exclusiva de carros esportivos e clássicos</p>
+        <a href="{{ url_for('cadastro') }}" class="cta-button">
+            <i class="fas fa-plus-circle"></i> Adicionar Carro
+        </a>
+    </div>
+</section>
+
+<section class="features">
+    <div class="feature-card">
+        <i class="fas fa-car-side"></i>
+        <h3>Carros Esportivos</h3>
+        <p>Explore nossa seleção de carros esportivos de alta performance</p>
+    </div>
+    <div class="feature-card">
+        <i class="fas fa-history"></i>
+        <h3>Clássicos</h3>
+        <p>Reviva a história com nossos carros clássicos restaurados</p>
+    </div>
+    <div class="feature-card">
+        <i class="fas fa-camera"></i>
+        <h3>Galeria Premium</h3>
+        <p>Fotos de alta qualidade dos veículos mais impressionantes</p>
+    </div>
+</section>
+
+<section class="galeria-section">
+    <h2>Nossa Galeria</h2>
+    <div class="galeria">
+        {% for car in cars %}
+        <div class="card">
+            <img src="{{ url_for('static', filename='uploads/' ~ car.foto) }}" alt="{{ car.marca }} {{ car.modelo }}">
+            <div class="info">
+                <h3>{{ car.marca }} {{ car.modelo }}</h3>
+                <div class="car-details">
+                    <p><i class="fas fa-calendar"></i> {{ car.ano }}</p>
+                    {% if car.potencia %}
+                    <p><i class="fas fa-horse"></i> {{ car.potencia }} cv</p>
+                    {% endif %}
+                    <p><i class="fas fa-tags"></i> {{ car.categoria|title }}</p>
+                </div>
+                {% if car.descricao %}
+                <p class="descricao">{{ car.descricao }}</p>
+                {% endif %}
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</section>
+{% endblock %}
