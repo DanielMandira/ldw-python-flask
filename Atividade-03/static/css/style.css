@@ -1,6 +1,6 @@
 :root {
-  --primary-color: #2c3e50;
-  --secondary-color: #e74c3c;
+  --primary-color: #1d2834;
+  --secondary-color: #870C09;
   --accent-color: #3498db;
   --background-color: #f5f6fa;
   --text-color: #2c3e50;
@@ -23,16 +23,16 @@ body {
 
 header {
   background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-  padding: 1.5rem;
   text-align: center;
+  padding-top: 2.2em;
   box-shadow: var(--shadow);
 }
 
 header h1 {
   margin: 0;
-  font-size: 2.5em;
+  font-size: 2em;
   color: white;
-  font-weight: 700;
+  font-weight: 600;
   letter-spacing: 1px;
   display: flex;
   align-items: center;
@@ -41,7 +41,7 @@ header h1 {
 }
 
 header h1 i {
-  font-size: 2.2em;
+  font-size: 2em;
 }
 
 nav {
@@ -87,13 +87,9 @@ nav a:hover::after {
 }
 
 main {
-  padding: 2rem;
-  max-width: 1200px;
-  margin: 0 auto;
-  flex: 1;
   width: 100%;
-  box-sizing: border-box;
-}
+  display: flex;
+flex-direction: column;}
 
 .galeria {
   display: grid;
@@ -241,14 +237,14 @@ footer {
 
 /* Hero Section */
 .hero {
-  background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
+
+  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
               url('https://images.unsplash.com/photo-1503376780353-7e6692767b70?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80');
   background-size: cover;
   background-position: center;
   color: white;
   padding: 6rem 2rem;
   text-align: center;
-  margin: -2rem -2rem 2rem -2rem;
 }
 
 .hero-content {
