@@ -5,36 +5,77 @@
 {% block content %}
 <section class="hero">
     <div class="hero-content">
-        <h2>Bem-vindo ao CarDream</h2>
-        <p>Descubra nossa coleção exclusiva de carros esportivos e clássicos</p>
+        <h2>Bem-vindo à CarDream</h2>
+        <p>Explore nossa coleção exclusiva de carros esportivos e clássicos</p>
         <a href="{{ url_for('cadastro') }}" class="cta-button">
-            <i class="fas fa-plus-circle"></i> Adicionar Carro
+            <i class="fas fa-plus"></i> Adicionar Carro
         </a>
     </div>
 </section>
 
-
+<section class="filtros">
+    <div class="filtros-container">
+        <form method="GET" class="filtros-form">
+            <div class="filtro-group">
+                <label for="categoria"><i class="fas fa-tag"></i> Categoria</label>
+                <select name="categoria" id="categoria">
+                    <option value="">Todas as categorias</option>
+                    <option value="popular" {% if request.args.get('categoria') == 'popular' %}selected{% endif %}>Popular</option>
+                    <option value="classico" {% if request.args.get('categoria') == 'classico' %}selected{% endif %}>Clássico</option>
+                    <option value="muscle" {% if request.args.get('categoria') == 'muscle' %}selected{% endif %}>Muscle Car</option>
+                    <option value="luxo" {% if request.args.get('categoria') == 'luxo' %}selected{% endif %}>Luxo</option>
+                    <option value="esportivo" {% if request.args.get('categoria') == 'esportivo' %}selected{% endif %}>Esportivo</option>
+                    <option value="supercarro" {% if request.args.get('categoria') == 'supercarro' %}selected{% endif %}>Supercarro</option>
+                </select>
+            </div>
+            <div class="filtro-group">
+                <label for="marca"><i class="fas fa-car"></i> Marca</label>
+                <input type="text" name="marca" id="marca" placeholder="Filtrar por marca" value="{{ request.args.get('marca', '') }}">
+            </div>
+            <div class="filtro-group">
+                <label for="ano_min"><i class="fas fa-calendar"></i> Ano</label>
+                <div class="ano-range">
+                    <input type="number" name="ano_min" id="ano_min" placeholder="Ano mínimo" value="{{ request.args.get('ano_min', '') }}" min="1900" max="2025">
+                    <span>até</span>
+                    <input type="number" name="ano_max" id="ano_max" placeholder="Ano máximo" value="{{ request.args.get('ano_max', '') }}" min="1900" max="2025">
+                </div>
+            </div>
+            <div class="button-goup">
+                <button type="submit" class="filtro-btn">
+                    <i class="fas fa-filter"></i> Filtrar
+                </button>
+                {% if request.args.get('categoria') or request.args.get('marca') or request.args.get('ano_min') or request.args.get('ano_max') %}
+                <a href="{{ url_for('galeria') }}" class="limpar-btn">
+                    <i class="fas fa-times"></i> Limpar
+                </a>
+                {% endif %}
+            </div>
+        </form>
+    </div>
+</section>
 
 <section class="galeria-section">
     <h2>Nossa Galeria</h2>
     <div class="galeria">
         {% for car in cars %}
-        <div class="card">
-            <img src="{{ url_for('static', filename='uploads/' ~ car.foto) }}" alt="{{ car.marca }} {{ car.modelo }}">
-            <div class="info">
-                <h3>{{ car.marca }} {{ car.modelo }}</h3>
-                <div class="car-details">
-                    <p><i class="fas fa-calendar"></i> {{ car.ano }}</p>
-                    {% if car.potencia %}
-                    <p><i class="fas fa-horse"></i> {{ car.potencia }} cv</p>
+        <a href="{{ url_for('carro', id=car.id) }}" class="card-link">
+            <div class="card">
+                <img src="{{ url_for('static', filename='uploads/' + car.foto) }}" alt="{{ car.marca }} {{ car.modelo }}">
+                <div class="info">
+                    <h3>{{ car.marca }} {{ car.modelo }}</h3>
+                    <div class="car-details">
+                        <p><i class="fas fa-calendar"></i> {{ car.ano }}</p>
+                        {% if car.potencia %}
+                        <p><i class="fas fa-tachometer-alt"></i> {{ car.potencia }} HP</p>
+                        {% endif %}
+                        <p><i class="fas fa-tag"></i> {{ car.categoria }}</p>
+                    </div>
+                    {% if car.descricao %}
+                    <p class="descricao">{{ car.descricao }}</p>
                     {% endif %}
-                    <p><i class="fas fa-tags"></i> {{ car.categoria|title }}</p>
                 </div>
-                {% if car.descricao %}
-                <p class="descricao">{{ car.descricao }}</p>
-                {% endif %}
             </div>
-        </div>
+        </a>
         {% endfor %}
     </div>
 </section>

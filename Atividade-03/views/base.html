@@ -46,5 +46,31 @@
             </div>
         </div>
     </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const alerts = document.querySelectorAll('.alert');
+            
+            alerts.forEach(alert => {
+                // Adiciona botão de fechar
+                const closeBtn = document.createElement('button');
+                closeBtn.className = 'close-btn';
+                closeBtn.innerHTML = '<i class="fas fa-times"></i>';
+                alert.appendChild(closeBtn);
+
+                // Fecha após 3 segundos
+                setTimeout(() => {
+                    alert.classList.add('hide');
+                    setTimeout(() => alert.remove(), 300);
+                }, 3000);
+
+                // Fecha ao clicar no botão
+                closeBtn.addEventListener('click', () => {
+                    alert.classList.add('hide');
+                    setTimeout(() => alert.remove(), 300);
+                });
+            });
+        });
+    </script>
 </body>
 </html>

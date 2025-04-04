@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ car.marca }} {{ car.modelo }} - CarDream{% endblock %}
+
+{% block content %}
+<section class="car-detail">
+    <div class="car-container">
+        <div class="car-image">
+            <img src="{{ url_for('static', filename='uploads/' ~ car.foto) }}" alt="{{ car.marca }} {{ car.modelo }}">
+        </div>
+        <div class="car-info">
+            <h2>{{ car.marca }} {{ car.modelo }}</h2>
+            <div class="car-details">
+                <p><i class="fas fa-calendar"></i> {{ car.ano }}</p>
+                {% if car.potencia %}
+                <p><i class="fas fa-horse"></i> {{ car.potencia }} cv</p>
+                {% endif %}
+                <p><i class="fas fa-tags"></i> {{ car.categoria|title }}</p>
+            </div>
+            {% if car.descricao %}
+            <div class="car-description">
+                <h3>Descrição</h3>
+                <p>{{ car.descricao }}</p>
+            </div>
+            {% endif %}
+            <div class="car-actions">
+                <a href="{{ url_for('editar_carro', id=car.id) }}" class="edit-btn">
+                    <i class="fas fa-edit"></i> Editar
+                </a>
+                <form action="{{ url_for('excluir_carro', id=car.id) }}" method="POST" class="delete-form">
+                    <button type="submit" class="delete-btn" onclick="return confirm('Tem certeza que deseja excluir este carro?')">
+                        <i class="fas fa-trash"></i> Excluir
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %} 
