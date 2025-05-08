@@ -24,3 +24,15 @@ def get_movies():
 @staticmethod
 def delete_movie(id):
     mongo.db.movies.delete_one({'_id': ObjectId(id)})
+    
+def get_movie_by_id(id):
+    return mongo.db.movies.find_one({'_id': ObjectId(id)})
+
+def update_movies(self, id):
+    mongo.db.movies.update_one({'_id': ObjectId(id)},
+                               {'$set':
+                                   {
+                                    'title': self.title,
+                                    'description': self.description,
+                                    'year': self.year
+                                   }})
